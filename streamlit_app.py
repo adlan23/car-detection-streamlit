@@ -44,7 +44,7 @@ os.makedirs(upload_dir, exist_ok=True)
 # ---------- MODEL CHOICE ----------
 model_options = {
     "Pretrained COCO (yolov5s.pt)": "yolov5/yolov5s.pt",
-    "Custom Model (best.pt)": "runs/train/car-detector/weights/best.pt"
+    "Stanford (Old)": "runs/train/stanford-train/weights/stanford_best.pt"
 }
 model_choice = st.selectbox("🧠 Choose Model:", list(model_options.keys()))
 model_path = model_options[model_choice]
