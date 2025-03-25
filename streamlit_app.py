@@ -4,6 +4,8 @@ import os
 import subprocess
 import shutil
 import time
+import sys
+
 
 # ---------- PAGE CONFIG ----------
 st.set_page_config(page_title="Car Detection System", layout="centered")
@@ -59,11 +61,8 @@ if uploaded_file:
 
     if st.button("Detect Now"):
         with st.spinner("Processing... please wait..."):
-            command = f"python yolov5/detect.py --weights {model_path} --img 640 --conf 0.25 --source {upload_path} --save-txt --save-conf"
+            command = f"{sys.executable} yolov5/detect.py --weights {model_path} --img 640 --conf 0.25 --source {upload_path} --save-txt --save-conf"
             subprocess.run(command, shell=True)
-
-            # ✅ Make sure result_dir exists
-            os.makedirs(result_dir, exist_ok=True)
 
             # Get latest result folder
             folders = sorted(os.listdir(result_dir), key=lambda x: os.path.getctime(os.path.join(result_dir, x)))
@@ -84,7 +83,7 @@ if uploaded_file:
                             parts = line.strip().split()
                             class_id = parts[0]
                             conf = float(parts[-1])
-                            st.markdown(f"- Class: `{class_id}` | Confidence: `{conf:.2f}`")
+                            st.markdown(f"- Class: {class_id} | Confidence: {conf:.2f}")
                 else:
                     st.warning("⚠️ No label data found.")
             else:
@@ -92,4 +91,3 @@ if uploaded_file:
 
         # Optional: Delete uploaded image after use
         os.remove(upload_path)
-
