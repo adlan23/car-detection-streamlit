@@ -62,6 +62,9 @@ if uploaded_file:
             command = f"python yolov5/detect.py --weights {model_path} --img 640 --conf 0.25 --source {upload_path} --save-txt --save-conf"
             subprocess.run(command, shell=True)
 
+            # ✅ Make sure result_dir exists
+            os.makedirs(result_dir, exist_ok=True)
+
             # Get latest result folder
             folders = sorted(os.listdir(result_dir), key=lambda x: os.path.getctime(os.path.join(result_dir, x)))
             latest_folder = os.path.join(result_dir, folders[-1])
@@ -89,3 +92,4 @@ if uploaded_file:
 
         # Optional: Delete uploaded image after use
         os.remove(upload_path)
+
