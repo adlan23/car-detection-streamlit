@@ -36,7 +36,7 @@ Originally, the project was required to use the **Stanford Cars Dataset**. Howev
 
 ## 🚀 Live App
 
-👉 [Click to open the deployed Streamlit app](https://car-detection-streamlit.streamlit.app)
+👉 [Click to open the deployed Streamlit app](https://car-detection-app-h4ghbm7ezjdcrevxdhrm8g.streamlit.app/)
 
 ---
 
