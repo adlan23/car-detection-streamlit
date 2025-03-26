@@ -1,8 +1,22 @@
+# ========== DATASET ==========
 Dataset/
 vehicle_dataset/
 yolo_dataset/
 test_images/
 uploads/
-__pycache__/
-**.pt
 
+# ========== YOLOv5 ==========
+runs/
+*.pt
+
+# ========== PYTHON CACHE ==========
+__pycache__/
+*.pyc
+*.pyo
+
+# ========== ENV/IDE ==========
+.venv/
+env/
+venv/
+.idea/
+.vscode/
