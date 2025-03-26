@@ -43,8 +43,9 @@ os.makedirs(upload_dir, exist_ok=True)
 
 # ---------- MODEL CHOICE ----------
 model_options = {
-    "Pretrained COCO (yolov5s.pt)": "yolov5/yolov5s.pt",
-    "Stanford (Old)": "runs/train/stanford-train/weights/stanford_best.pt"
+    "Vehicle Model (New)": "yolov5/runs/train/vehicle-detector/weights/vehicle_best.pt",
+    "Stanford (Old)": "yolov5/runs/train/stanford-train/weights/stanford_best.pt",
+    "Pretrained COCO (yolov5s.pt)": "yolov5/yolov5s.pt"
 }
 model_choice = st.selectbox("🧠 Choose Model:", list(model_options.keys()))
 model_path = model_options[model_choice]
@@ -57,7 +58,7 @@ if uploaded_file:
     with open(upload_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
-    st.image(Image.open(uploaded_file), caption="Uploaded Image", use_column_width=True)
+    st.image(Image.open(uploaded_file), caption="Uploaded Image", use_container_width=True)
 
     if st.button("Detect Now"):
         with st.spinner("Processing... please wait..."):
@@ -73,7 +74,7 @@ if uploaded_file:
 
             if os.path.exists(result_img_path):
                 st.success("✅ Detection Completed!")
-                st.image(Image.open(result_img_path), caption="Detection Result", use_column_width=True)
+                st.image(Image.open(result_img_path), caption="Detection Result", use_container_width=True)
 
                 label_path = os.path.join(latest_folder, "labels", uploaded_file.name.replace(".jpg", ".txt").replace(".png", ".txt"))
                 if os.path.exists(label_path):

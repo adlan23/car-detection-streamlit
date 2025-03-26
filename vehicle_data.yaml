@@ -1,0 +1,12 @@
+train: ../vehicle_dataset/images/train
+val: ../vehicle_dataset/images/val
+
+nc: 6
+names: [
+  "car",
+  "threewheel",
+  "bus",
+  "truck",
+  "motorbike",
+  "van",
+]
