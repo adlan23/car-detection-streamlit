@@ -43,7 +43,7 @@ os.makedirs(upload_dir, exist_ok=True)
 
 # ---------- MODEL CHOICE ----------
 model_options = {
-    "Vehicle Model (New)": "yolov5/runs/train/vehicle-detector/weights/vehicle_best_linux.pt",
+    "Vehicle Model (New)": "yolov5/runs/train/vehicle-detector/weights/vehicle_best.pt",
     "Stanford (Old)": "yolov5/runs/train/stanford-train/weights/stanford_best.pt",
     "Pretrained COCO (yolov5s.pt)": "yolov5/yolov5s.pt"
 }
