@@ -1,5 +1,5 @@
-train: ../yolo_dataset/images/train
-val: ../yolo_dataset/images/val
+train: ../standford_dataset/images/train
+val: ../standford_dataset/images/val
 
 nc: 196
 names: [
