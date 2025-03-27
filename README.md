@@ -17,7 +17,7 @@ Originally, the project was required to use the **Stanford Cars Dataset**. Howev
 - Class labels not matching car images
 - Poor detection performance after training
 
-⚠️ **As a result, a pretrained YOLOv5 model was used as a backup to ensure full functionality of the system.**
+⚠️ **As a result, a different vehicle dataset was used for training**, and the **pretrained YOLOv5 model** remains as a backup to ensure full functionality of the system.
 
 ---
 
@@ -28,8 +28,9 @@ Originally, the project was required to use the **Stanford Cars Dataset**. Howev
 - Display bounding boxes and **class IDs**
 - View confidence score per detection
 - Option to switch between:
+  - ⚙️ Custom-trained model using new dataset
+  - 🧪 Stanford-trained model (experimental)
   - ✅ Pretrained YOLOv5 (`yolov5s.pt`)
-  - ⚙️ Custom-trained model (if available)
 - Fully deployed online
 
 ---
@@ -70,7 +71,21 @@ conda activate car-detect
 pip install -r requirements.txt
 ```
 
-### 4. Run the app:
+### ⚠️ 4. If you’re on **Windows**, modify `streamlit_app.py` to fix file path incompatibility:
+In the `model_options` section, update the model paths like this:
+```python
+"Vehicle Model (New)": {
+    "path": "yolov5/runs/train/vehicle-detector/weights/vehicle_best.pt"
+},
+"Stanford (Old)": {
+    "path": "yolov5/runs/train/stanford-detector/weights/stanford_best.pt"
+}
+```
+**Note:** The original weights folder names (with `NEW`) were trained and stored on Linux-based paths. Windows needs compatible directory structure to avoid `WindowsPath` errors during deployment.
+
+---
+
+### 5. Run the app:
 ```bash
 streamlit run streamlit_app.py
 ```
@@ -88,6 +103,7 @@ streamlit run streamlit_app.py
 - Built with Streamlit
 - Supports file uploads & preview
 - Displays detection output with labels and confidence
+- Class ID → Name mapping shown with pie chart distribution
 
 ### Deployment:
 - Deployed on [Streamlit Cloud](https://streamlit.io/cloud)
@@ -102,7 +118,7 @@ streamlit run streamlit_app.py
 | Use deep learning model (YOLOv5) | ✅ Done     |
 | GUI for upload & detection       | ✅ Done     |
 | Web deployment                   | ✅ Done     |
-| Evaluation (mAP, IoU*)           | ✅ Partially done (training attempted, but Stanford Cars dataset caused issues) |
+| Evaluation (mAP, IoU*)           | ✅ Partially done – Custom training was successfully completed using a new vehicle dataset (results were acceptable and usable). However, training with the Stanford Cars dataset resulted in poor performance and was ultimately discarded. |
 | Stanford Dataset used            | ⚠️ Attempted, but dropped due to annotation errors |
 
 ---
@@ -111,6 +127,7 @@ streamlit run streamlit_app.py
 
 - Detection results may vary based on model (custom vs pretrained)
 - The project is modular and can be easily extended or integrated with another dataset
+- **Linux is the recommended environment for model training**, as Windows-trained models may cause path-related deployment issues.
 
 ---
 
